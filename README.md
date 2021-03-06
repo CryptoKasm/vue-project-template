@@ -2,7 +2,20 @@
 
 ## Project setup
 ```
-npm install
+1) ./setup.sh
+2) ./kosmic-home.sh //for Menu
+   ./kosmic-home.sh --start //to start instantly
+
+You are now up and running, you can go to the browser link below to preview results.
+I also recommend downloading these plugins:
+
+Vscode: https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo
+
+Web Browser Plugin: https://github.com/vuejs/vue-devtools#vue-devtools
+
+Vue.js Documentation: https://vuejs.org/v2/guide/
+
+Apollo Documentation: https://apollo.vuejs.org/guide/apollo/
 ```
 
 ### Compiles and hot-reloads for development
