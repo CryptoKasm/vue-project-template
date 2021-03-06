@@ -1,4 +1,5 @@
 #!/bin/bash
+source bin/cklib.sh
 
 # Variables
 vNode="v12.21.0"
@@ -29,12 +30,15 @@ function installCurl() {
 
 # Install Node Version Manager
 function installNVM() {
-    if ! [ -x "$(command -v nvm)" ]; then
+    HOME="$(getent passwd $USER | awk -F ':' '{print $6}')"
+    
+    if [ ! -d "$HOME/.nvm" ]; then
         curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-        source ~/.profile 
+
         nvm install $vNode
         nvm use $vNode 
-        if ! [ -x "$(command -v nvm)" ]; then 
+
+        if ! [ -f "$HOME/.nvm" ]; then 
             echo "ERROR: Node Version Manager" 
         fi
     fi
@@ -53,7 +57,7 @@ function installVuecli() {
 # Install NPM packages
 function setupProject() {
     if ! [ -x "$(command -v npm)" ]; then
-        sudo npm install
+        npm install
     fi
 }
 
@@ -61,7 +65,7 @@ function setupProject() {
 function mainSetup() {
     checkRoot
     gitPull
-    setPermissions
+    fixPermissions
     installCurl
     installNVM
     installVuecli
